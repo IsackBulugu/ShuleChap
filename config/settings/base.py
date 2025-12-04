@@ -91,9 +91,6 @@ THIRD_PARTY_APPS = [
 ]
 
 
-
-]
-
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
