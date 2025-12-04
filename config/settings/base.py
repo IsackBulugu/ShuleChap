@@ -90,26 +90,8 @@ THIRD_PARTY_APPS = [
     'tinymce',
 ]
 
-INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
-SITE_ID = 1
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-
-    # attach_institute_data_ctx_processor was implemented for same support.
-    # 'institute.middleware.AttachInstituteDataMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
