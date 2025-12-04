@@ -90,6 +90,26 @@ THIRD_PARTY_APPS = [
     'tinymce',
 ]
 
+INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+SITE_ID = 1
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # attach_institute_data_ctx_processor was implemented for same support.
+    # 'institute.middleware.AttachInstituteDataMiddleware',
+]
 
 ROOT_URLCONF = 'config.urls'
 
@@ -111,23 +131,26 @@ TEMPLATES = [
             ],
         },
     },
-]
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': 5432,
     }
 }
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
-    }
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': f'{env("REDIS_HOST")}:{env("REDIS_PORT")}',
+    },
 }
 
 # Write session to the DB, only load it from the cache
@@ -163,8 +186,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Africa/Dar_es_Salaam'
-
+TIME_ZONE = env('TIME_ZONE')
 
 USE_I18N = True
 
@@ -309,5 +331,4 @@ TINYMCE_DEFAULT_CONFIG = {
     "bold italic backcolor | alignleft aligncenter "
     "alignright alignjustify | bullist numlist outdent indent | "
     "removeformat | help",
-
 }
