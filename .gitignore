@@ -128,3 +128,27 @@ dj_sms_env/
 modules.txt
 celeryd.pid
 db.sqlite
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environments
+venv/
+.env
+env/
+envs/.env
+
+# Django stuff
+*.log
+db.sqlite3
+staticfiles/
+mediafiles/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+

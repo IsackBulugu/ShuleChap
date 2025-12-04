@@ -1,5 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
+
+admin.site.site_header = "Shule chap Administration"
+admin.site.site_title = "Shule chap Admin Portal"
+admin.site.index_title = "Welcome to Shule chap"
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -7,9 +12,9 @@ from django.contrib.auth import views as auth_views
 from django_school_management.institute.models import InstituteProfile
 from django_school_management.accounts.views import dashboard
 
-admin.site.site_header = 'Django Administration'
-admin.site.site_title = 'Django Site Admin'
-admin.site.index_title = 'Django Administration'
+admin.site.site_header = 'Shule chap Administration'
+admin.site.site_title = 'Shule chap Site Admin'
+admin.site.index_title = 'Shule chap Administration'
 
 DJANGO_ADMIN_URL = settings.DJANGO_ADMIN_URL + '/'
 urlpatterns = [

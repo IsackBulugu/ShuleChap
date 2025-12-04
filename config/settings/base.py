@@ -106,6 +106,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 
     # attach_institute_data_ctx_processor was implemented for same support.
     # 'institute.middleware.AttachInstituteDataMiddleware',
@@ -138,20 +139,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': f'{env("REDIS_HOST")}:{env("REDIS_PORT")}',
-    },
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
 }
 
 # Write session to the DB, only load it from the cache
@@ -187,7 +184,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = env('TIME_ZONE')
+TIME_ZONE = 'Africa/Dar_es_Salaam'
+
 
 USE_I18N = True
 
@@ -332,4 +330,5 @@ TINYMCE_DEFAULT_CONFIG = {
     "bold italic backcolor | alignleft aligncenter "
     "alignright alignjustify | bullist numlist outdent indent | "
     "removeformat | help",
+
 }
