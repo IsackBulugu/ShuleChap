@@ -66,10 +66,10 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "django_school_management.accounts",
     "django_school_management.students",
-    "django_school_management.staff",
+    "django_school_management.teachers",
     "django_school_management.pages",
+    "django_school_management.academics",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
